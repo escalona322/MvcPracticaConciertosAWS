@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MvcPracticaConciertosAWS.Models.Evento>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="InsertEvento">Create New</a>
+</p>
+<p>
+    <a asp-action="UpdateCategoriaEvento">Cambiar categoria eventos</a>
+</p>
+<p>
+    <a asp-action="EventosCategoria">Eventos por categoria</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEvento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artista)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCategoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoria)
+            </td>
+            <td>
+                <a asp-controller="Conciertos" asp-action="DeleteEvento" asp-route-idevento="@item.IdEvento">
+                    Delete
+                </a>
+                <a asp-controller="Conciertos" asp-action="Details" asp-route-idevento="@item.IdEvento">
+                    Details
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

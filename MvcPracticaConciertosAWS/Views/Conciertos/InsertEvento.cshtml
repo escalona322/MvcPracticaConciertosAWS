@@ -1,0 +1,55 @@
+﻿@model MvcPracticaConciertosAWS.Models.Evento
+
+@{
+    ViewData["Title"] = "InsertEvento";
+    List<CategoriaEvento> categorias = ViewData["CATEGORIAS"] as List<CategoriaEvento>;
+
+}
+
+<h1>InsertEvento</h1>
+
+<h4>Evento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="InsertEvento">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+              
+                <input asp-for="IdEvento" type="hidden" value="0" class="form-control" />
+               
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Artista" class="control-label"></label>
+                <input asp-for="Artista" class="form-control" />
+                <span asp-validation-for="Artista" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select name="IdCategoria">
+                    @foreach (CategoriaEvento cat in categorias)
+                    {
+                        <option value="@cat.IdCategoria">
+                            @cat.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
